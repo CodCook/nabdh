@@ -131,6 +131,7 @@ const en: Dict = {
     prayerTimes: 'Prayer times', close: 'Close',
   },
 
+  demo: { steps: { organize: 'Organize the day', plate: 'Tap the plate', mode: 'Switch the mode' }, label: 'Demo steps' },
   stage: {
     title: 'Ministry Pulse — Ministry of Sports and Youth',
     since: 'Since last movement in the building',

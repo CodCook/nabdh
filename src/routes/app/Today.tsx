@@ -6,6 +6,7 @@ import { useT } from '../../i18n'
 import { useSettings } from '../../state/settings'
 import { lastMovement, useProgress } from '../../state/progress'
 import { useNow } from '../../lib/time'
+import { notifyDemo } from '../../lib/demoBus'
 import { planDay, type Block } from '../../engine/cadence'
 import { SAMPLE_DAY } from '../../data/sampleDay'
 import CountUp from '../../components/CountUp'
@@ -33,6 +34,7 @@ export default function Today() {
   const adaptive = s.mode === 'adaptive'
 
   const organize = () => {
+    notifyDemo('organize')
     setBusy(true)
     setOrganized(true)
     window.setTimeout(() => setBusy(false), 2600)
