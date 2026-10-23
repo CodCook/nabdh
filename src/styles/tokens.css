@@ -49,3 +49,9 @@ html[dir='rtl'] .rtl-flip { transform: scaleX(-1); }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .pulse-scroll { animation: none; }
 }
+
+/* inside the demo phone frame: room for the notch and the home indicator */
+html[data-embed] { --safe-top: 40px; --safe-bottom: 20px; }
+html[data-embed] body { padding-top: var(--safe-top); box-sizing: border-box; overflow-x: hidden; }
+html[data-embed] #root { height: calc(100% - var(--safe-top)); }
+html[data-embed] nav[aria-label='Main'] { padding-bottom: calc(var(--safe-bottom) + 8px); }

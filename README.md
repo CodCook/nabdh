@@ -21,6 +21,12 @@ npm run build
 6. Settings: switch to **النمط المتكيّف** (bigger targets, voice on) and toggle **وضع رمضان** (the pulse slows everywhere).
 7. Role «خدمة المراجعين» adds the **النوافذ** tab: scrub the clock and watch coverage stay at 100%.
 
+## One-laptop stage mode: #/demo
+
+Open `#/demo` for a 16:9 dark canvas: the phone app (fully interactive, in a phone frame) on the left ~30%, the stage on the right ~70%. A tap on the plate beats the stage pulse instantly over `BroadcastChannel`, no network needed. **F** fullscreen, **T/H/R** work even after you have tapped inside the phone. A small QR sits in the bottom corner.
+
+**Offline:** fonts are self-hosted and the service worker precaches every asset. Load `#/demo` once with Wi-Fi, then reload it in airplane mode before the pitch to confirm.
+
 ## Editable before the pitch
 
 - Field-test numbers on the stage: `src/config/testResults.ts`

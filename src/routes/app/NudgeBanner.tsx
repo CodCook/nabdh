@@ -13,7 +13,7 @@ export default function NudgeBanner({ open, onStart, onLater }: { open: boolean;
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
           transition={{ type: 'spring', stiffness: 220, damping: 24 }}
-          className="fixed top-4 inset-x-4 mx-auto max-w-[398px] z-20 bg-maroon text-white rounded-lg p-4 flex flex-col gap-3"
+          className="fixed top-[calc(var(--safe-top,0px)+16px)] inset-x-4 mx-auto max-w-[398px] z-20 bg-maroon text-white rounded-lg p-4 flex flex-col gap-3"
         >
           <div className="flex items-start gap-3">
             <Bell size={22} strokeWidth={1.5} aria-hidden="true" className="flex-none mt-1" />

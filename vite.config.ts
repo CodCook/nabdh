@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icons/icon.svg'],
+      includeAssets: ['icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'],
       manifest: {
         name: 'نبض',
         short_name: 'نبض',
@@ -26,7 +26,12 @@ export default defineConfig({
           { src: 'icons/icon.svg', sizes: 'any', type: 'image/svg+xml' },
         ],
       },
-      workbox: { navigateFallback: 'index.html' },
+      workbox: {
+        // everything the demo needs, fonts included, is precached: it must survive with no venue Wi-Fi
+        globPatterns: ['**/*.{js,css,html,woff2,woff,svg,png,webmanifest}'],
+        navigateFallback: 'index.html',
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+      },
     }),
   ],
   test: { include: ['src/**/*.test.ts'] },

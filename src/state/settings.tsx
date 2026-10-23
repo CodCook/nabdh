@@ -51,6 +51,16 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     try { localStorage.setItem(KEY, JSON.stringify(s)) } catch { /* ignore */ }
   }, [s])
 
+  // other frames of the same app (the #/demo phone and stage) stay in step, e.g. language
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== KEY || !e.newValue) return
+      setS((prev) => (JSON.stringify(prev) === e.newValue ? prev : { ...DEFAULTS, ...JSON.parse(e.newValue!) }))
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
+
   // global effects: direction, language, mode, pulse speed (Ramadan slows the whole app)
   useEffect(() => {
     const el = document.documentElement

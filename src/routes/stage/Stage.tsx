@@ -32,7 +32,7 @@ function Frame({ children }: { children: ReactNode }) {
 const seedCounts = () => Object.fromEntries(DEPTS.map((d) => [d.id, d.seed])) as Record<string, number>
 const seedBeats = () => Object.fromEntries(DEPTS.map((d) => [d.id, 0])) as Record<string, number>
 
-export default function Stage() {
+export function StageView({ footer = true }: { footer?: boolean }) {
   const { t, n, lang } = useT()
   const now = useNow(1000)
   const [counts, setCounts] = useState(seedCounts)
@@ -61,9 +61,8 @@ export default function Stage() {
 
   // demo-safety shortcuts
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || e.altKey) return
-      const k = e.key.toLowerCase()
+    const handle = (key: string) => {
+      const k = key.toLowerCase()
       if (k === 't') checkIn(DEPTS[Math.floor(Math.random() * DEPTS.length)].id)
       else if (k === 'h') checkIn('hr')
       else if (k === 'r') reset()
@@ -72,8 +71,20 @@ export default function Stage() {
         else document.documentElement.requestFullscreen?.()
       }
     }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      handle(e.key)
+    }
+    // keys pressed inside the #/demo phone frame are forwarded by the embedded app
+    const onMsg = (e: MessageEvent) => {
+      if (e.origin === window.location.origin && e.data?.type === 'nabdh-key' && typeof e.data.key === 'string') handle(e.data.key)
+    }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.addEventListener('message', onMsg)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('message', onMsg)
+    }
   }, [checkIn, reset])
 
   const clock = new Date(now)
@@ -84,8 +95,7 @@ export default function Stage() {
   const unit = { hr: t.hr, min: t.min, sec: lang === 'ar' ? 'ث' : 's' }
 
   return (
-    <Frame>
-      <div className="h-full p-12 flex flex-col gap-6 text-sand" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="p-12 flex flex-col gap-6 text-sand bg-stage" style={{ width: W, height: H }} dir={lang === "ar" ? "rtl" : "ltr"}>
         {/* top bar */}
         <header className="flex items-center justify-between h-[72px]">
           <h1 className="kufi text-[36px] leading-tight">{t.stage.title}</h1>
@@ -123,9 +133,17 @@ export default function Stage() {
           <aside className="w-[560px] flex-none"><SavingsPanel /></aside>
         </div>
 
-        <StageFooter />
+        {footer && <StageFooter />}
         <p className="sr-only">{t.stage.hints}</p>
       </div>
+  )
+}
+
+/** The /stage route: the dashboard scaled to the projector. */
+export default function Stage() {
+  return (
+    <Frame>
+      <StageView />
     </Frame>
   )
 }
