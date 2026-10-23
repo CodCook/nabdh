@@ -38,15 +38,11 @@ VITE_SUPABASE_ANON_KEY=...
 
 Copy `.env.example` to `.env.local` locally, or add them in the Vercel project settings.
 
-## Deploy and QR
+## Deploy (GitHub Pages)
 
-```bash
-npm i -g vercel
-vercel --prod
-npm run qr -- https://<your-deployment>.vercel.app   # writes public/qr-app.svg (then redeploy)
-```
+Pushing to `main` runs `.github/workflows/pages.yml` (tests, build, deploy). The app uses hash routes, so the URLs are `https://<user>.github.io/<repo>/#/app` and `.../#/stage`.
 
-The stage footer also renders its own QR at runtime from the current origin, or from `VITE_APP_URL` if set.
+The stage footer draws its own QR at runtime from the current address. `npm run qr -- https://<user>.github.io/<repo>` also writes a static `public/qr-app.svg`.
 
 ## Privacy by construction
 

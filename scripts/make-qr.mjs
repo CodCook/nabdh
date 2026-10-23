@@ -8,6 +8,6 @@ if (!base) {
   console.error('Pass the deployed URL: npm run qr -- https://your-app.vercel.app')
   process.exit(1)
 }
-const svg = await QRCode.toString(`${base}/app`, { type: 'svg', margin: 2, color: { dark: '#8A1538', light: '#F5F0E8' } })
+const svg = await QRCode.toString(`${base}/#/app`, { type: 'svg', margin: 2, color: { dark: '#8A1538', light: '#F5F0E8' } })
 writeFileSync(new URL('../public/qr-app.svg', import.meta.url), svg)
-console.log(`public/qr-app.svg -> ${base}/app`)
+console.log(`public/qr-app.svg -> ${base}/#/app`)

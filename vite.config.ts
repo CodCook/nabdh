@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     VitePWA({
@@ -14,8 +15,8 @@ export default defineConfig({
         description: 'استراحات حركة قصيرة داخل يوم العمل',
         lang: 'ar',
         dir: 'rtl',
-        start_url: '/app',
-        scope: '/',
+        start_url: './#/app',
+        scope: './',
         display: 'standalone',
         background_color: '#F5F0E8',
         theme_color: '#8A1538',
@@ -25,7 +26,7 @@ export default defineConfig({
           { src: 'icons/icon.svg', sizes: 'any', type: 'image/svg+xml' },
         ],
       },
-      workbox: { navigateFallback: '/index.html' },
+      workbox: { navigateFallback: 'index.html' },
     }),
   ],
   test: { include: ['src/**/*.test.ts'] },

@@ -6,7 +6,7 @@ export default function StageFooter() {
   const { t } = useT()
   const [svg, setSvg] = useState('')
   useEffect(() => {
-    const url = (import.meta.env.VITE_APP_URL as string | undefined) ?? `${window.location.origin}/app`
+    const url = (import.meta.env.VITE_APP_URL as string | undefined) ?? `${window.location.origin}${window.location.pathname}#/app`
     QRCode.toString(url, { type: 'svg', margin: 1, color: { dark: '#0E0C0B', light: '#F5F0E8' } }).then(setSvg)
   }, [])
   return (
