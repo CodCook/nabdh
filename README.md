@@ -36,7 +36,7 @@ VITE_SUPABASE_URL=...
 VITE_SUPABASE_ANON_KEY=...
 ```
 
-Copy `.env.example` to `.env.local` locally, or add them in the Vercel project settings.
+Copy `.env.example` to `.env.local` locally, or add them as repository secrets and expose them in the workflow build step.
 
 ## Deploy (GitHub Pages)
 
