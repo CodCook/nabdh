@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Activity, CalendarDays, Settings as Gear, Workflow } from 'lucide-react'
+import PulseLine from '../../components/PulseLine'
 import { useT } from '../../i18n'
 import { useSettings } from '../../state/settings'
 
@@ -17,7 +18,11 @@ export default function AppShell({ children, nav = true }: { children: ReactNode
   return (
     <div className="app-root min-h-full flex justify-center bg-sand">
       <div className="relative w-full max-w-[430px] min-h-full flex flex-col bg-sand lg:border-x lg:border-line">
-        <main className="flex-1 px-6 pt-6 pb-32">{children}</main>
+        <main className="flex-1 px-6 pt-4 pb-32">
+          {/* the app-wide pulse: it slows in Ramadan mode */}
+          <div className="text-maroon/60 mb-4" aria-hidden="true"><PulseLine variant="loop" height={24} strokeWidth={1.5} /></div>
+          {children}
+        </main>
         {nav && (
           <nav aria-label="Main" className="fixed bottom-0 inset-x-0 mx-auto w-full max-w-[430px] bg-surface border-t border-line flex justify-around px-2 pb-2 pt-1">
             {items.map(({ to, end, icon: Icon, label }) => (

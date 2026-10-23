@@ -14,7 +14,7 @@ export default function StageFooter() {
       <p>{t.stage.privacy}</p>
       <div className="flex items-center gap-4">
         <span className="text-sand/80">{t.stage.tryNow}</span>
-        <div className="w-[96px] h-[96px] rounded overflow-hidden" role="img" aria-label={`${t.stage.tryNow} — QR`}
+        <div className="w-[80px] h-[80px] rounded overflow-hidden" role="img" aria-label={`${t.stage.tryNow} — QR`}
           dangerouslySetInnerHTML={{ __html: svg }} />
       </div>
     </footer>

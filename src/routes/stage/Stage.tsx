@@ -7,7 +7,9 @@ import { DEPTS, deptByCode } from '../../data/departments'
 import { sync } from '../../sync'
 import { sinceParts, useNow } from '../../lib/time'
 import MainPulse from './MainPulse'
-import StageFooter from './StageFooter'
+import StageFooter from "./StageFooter"
+import SavingsPanel from "./SavingsPanel"
+import ResultsPanel from "./ResultsPanel"
 
 const W = 1920, H = 1080
 
@@ -102,8 +104,8 @@ export default function Stage() {
         {/* main row */}
         <div className="flex gap-12 flex-1 min-h-0">
           <section className="flex-1 flex flex-col min-w-0">
-            <div className="relative" style={{ height: 240 }}>
-              <MainPulse beatKey={mainBeat} height={240} />
+            <div className="relative" style={{ height: 200 }}>
+              <MainPulse beatKey={mainBeat} height={200} />
             </div>
             <ul className="mt-6 flex flex-col">
               {DEPTS.map((d) => (
@@ -116,11 +118,11 @@ export default function Stage() {
                 </li>
               ))}
             </ul>
+            <div className="mt-auto pt-4"><ResultsPanel /></div>
           </section>
-          <aside id="stage-right" className="w-[560px] flex-none" />
+          <aside className="w-[560px] flex-none"><SavingsPanel /></aside>
         </div>
 
-        <div id="stage-bottom" />
         <StageFooter />
         <p className="sr-only">{t.stage.hints}</p>
       </div>

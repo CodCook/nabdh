@@ -23,5 +23,6 @@ export function fmtClock(min: number, lang: Lang): string {
 export function useT() {
   const { s } = useSettings()
   const t = dicts[s.lang]
-  return { t, lang: s.lang, n: (v: number | string) => fmt(v, s.lang), clock: (m: number) => fmtClock(m, s.lang) }
+  const mw = (c: number) => (s.lang === 'en' ? (c === 1 ? 'minute' : 'minutes') : c === 1 ? 'دقيقة' : c === 2 ? 'دقيقتان' : c >= 3 && c <= 10 ? 'دقائق' : 'دقيقة')
+  return { t, lang: s.lang, mw, n: (v: number | string) => fmt(v, s.lang), clock: (m: number) => fmtClock(m, s.lang) }
 }

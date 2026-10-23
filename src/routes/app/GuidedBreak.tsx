@@ -12,7 +12,7 @@ import AppShell from './AppShell'
 const mmss = (sec: number) => `${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}`
 
 export default function GuidedBreak() {
-  const { t, n, lang } = useT()
+  const { t, n, lang, mw } = useT()
   const { s, set } = useSettings()
   const nav = useNavigate()
   const loc = useLocation()
@@ -118,7 +118,7 @@ export default function GuidedBreak() {
             <motion.section key="done" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex-1 flex flex-col items-center justify-center text-center gap-6">
               <BigPulse bpm={bpm} size={160} />
               <p className="kufi text-[28px] text-ink">{t.guided.finishBreak}</p>
-              <p className="text-warm num">{adaptive ? `${t.guided.adaptiveCounter}: ${n(moveMinutes)}` : `${n(moveMinutes)} ${t.unitMinutes}`}</p>
+              <p className="text-warm num">{adaptive ? `${t.guided.adaptiveCounter}: ${n(moveMinutes)}` : `${n(moveMinutes)} ${mw(moveMinutes)}`}</p>
               <button type="button" onClick={finish} className="target h-14 w-full rounded-lg bg-maroon text-white text-[18px] font-semibold">{t.checkin.plate}</button>
             </motion.section>
           ) : (

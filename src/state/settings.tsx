@@ -15,11 +15,12 @@ export interface Settings {
   onboarded: boolean
   dhuhr: number // minutes since midnight
   asr: number
+  pavsWeekly: number | null
 }
 
 const DEFAULTS: Settings = {
   lang: 'ar', role: 'meetings', mode: 'masar', pregnancy: false, ramadan: false, voice: false,
-  dept: 'hr', onboarded: false, dhuhr: 11 * 60 + 20, asr: 14 * 60 + 35,
+  dept: 'hr', onboarded: false, dhuhr: 11 * 60 + 20, asr: 14 * 60 + 35, pavsWeekly: null,
 }
 const KEY = 'nabdh.settings.v1'
 
