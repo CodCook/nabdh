@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sand: #F5F0E8;
+  --surface: #FFFFFF;
+  --stage: #0E0C0B;
+  --stage-surface: #1A1715;
+  --maroon: #8A1538;
+  --coral: #FF4D4D;
+  --gold: #B8935A;
+  --warm: #6B625A;
+  --line: #D9D1C7;
+  --ink: #2A2420;
+  --pulse-bpm: 72;
+  --target: 48px;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html[lang='en'] body { font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', sans-serif; }
+.kufi { font-family: 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif; font-weight: 700; }
+html[lang='en'] .kufi { font-family: 'IBM Plex Sans', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* adaptive mode: bigger touch targets and type */
+html[data-mode='adaptive'] { --target: 56px; }
+html[data-mode='adaptive'] .app-root { font-size: 18px; }
+.target { min-height: var(--target); min-width: var(--target); transition: min-height .35s ease; }
+
+:focus-visible { outline: 2px solid var(--maroon); outline-offset: 2px; }
+.on-dark :focus-visible { outline-color: var(--sand); }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+html[dir='rtl'] .rtl-flip { transform: scaleX(-1); }
+
+/* scrolling heartbeat (logo / loader / header line) */
+@keyframes pulse-scroll { from { transform: translateX(0); } to { transform: translateX(-120px); } }
+.pulse-scroll { animation: pulse-scroll calc(60s / var(--pulse-bpm)) linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .pulse-scroll { animation: none; }
+}
