@@ -31,7 +31,7 @@ export default function Timeline({ plan, organized, role, onBreak }: Props) {
     b.reason === 'lunch' ? t.today.lunchPeak : b.reason === 'prayer' ? t.today.afterPrayer : b.reason === 'meetingEnd' ? t.today.meetingEnd : t.today.spacing
 
   return (
-    <div className="relative" style={{ height: (TIMELINE_END - TIMELINE_START) * PX + 16 }}>
+    <div className="relative overflow-x-clip" style={{ height: (TIMELINE_END - TIMELINE_START) * PX + 16 }}>
       {/* hour rules */}
       {HOURS.map((h) => (
         <div key={h} className="absolute inset-x-0 flex items-center" style={{ top: top(h) }}>
