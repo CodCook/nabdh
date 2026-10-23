@@ -9,7 +9,7 @@ const AR_DIGITS = '٠١٢٣٤٥٦٧٨٩'
 export function fmt(v: number | string, lang: Lang): string {
   const s = typeof v === 'number' ? v.toLocaleString('en-US') : v
   if (lang === 'en') return s
-  return s.replace(/\d/g, (d) => AR_DIGITS[+d]).replace(/,/g, '٬')
+  return s.replace(/\d/g, (d) => AR_DIGITS[+d]).replace(/,/g, '٬').replace(/\./g, '٫')
 }
 
 /** minutes since midnight -> "10:42" (localized digits) */

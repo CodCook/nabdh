@@ -10,7 +10,7 @@ export default function CountUp({ value, duration = 0.9, className, prefix = '',
   const from = useRef(0)
   const [v, setV] = useState(0)
   useEffect(() => {
-    if (reduce) { setV(value); from.current = value; return }
+    if (reduce || document.hidden) { setV(value); from.current = value; return }
     const c = animate(from.current, value, { duration, ease: 'easeOut', onUpdate: (x) => setV(x) })
     from.current = value
     return () => c.stop()
