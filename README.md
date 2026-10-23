@@ -29,7 +29,7 @@ Open `#/demo` for a 16:9 dark canvas: the phone app (fully interactive, in a pho
 
 ## Editable before the pitch
 
-- Field-test numbers on the stage: `src/config/testResults.ts`
+- 90-day pilot targets on the stage: `src/config/pilotTargets.ts`
 - Sample day and prayer times: `src/data/sampleDay.ts` (prayer times are also editable in Settings)
 - Copy: `src/i18n/ar.ts`, `src/i18n/en.ts`
 

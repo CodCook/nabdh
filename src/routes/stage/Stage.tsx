@@ -9,7 +9,7 @@ import { sinceParts, useNow } from '../../lib/time'
 import MainPulse from './MainPulse'
 import StageFooter from "./StageFooter"
 import SavingsPanel from "./SavingsPanel"
-import ResultsPanel from "./ResultsPanel"
+import PilotTargets from "./PilotTargets"
 
 const W = 1920, H = 1080
 
@@ -114,12 +114,12 @@ export function StageView({ footer = true }: { footer?: boolean }) {
         {/* main row */}
         <div className="flex gap-12 flex-1 min-h-0">
           <section className="flex-1 flex flex-col min-w-0">
-            <div className="relative" style={{ height: 200 }}>
-              <MainPulse beatKey={mainBeat} height={200} />
+            <div className="relative" style={{ height: 160 }}>
+              <MainPulse beatKey={mainBeat} height={160} />
             </div>
             <ul className="mt-6 flex flex-col">
               {DEPTS.map((d) => (
-                <li key={d.id} className="flex items-center gap-8 h-[64px] border-t border-sand/10">
+                <li key={d.id} className="flex items-center gap-8 h-[56px] border-t border-sand/10">
                   <span className="w-[280px] text-[28px]">{t.stage.depts[d.id]}</span>
                   <div className="flex-1 text-sand/35"><PulseLine variant="event" beatKey={beats[d.id]} height={40} strokeWidth={2} /></div>
                   <span className="kufi text-[40px] w-[96px] text-end num" aria-label={`${t.stage.depts[d.id]}: ${counts[d.id]}`}>
@@ -128,7 +128,7 @@ export function StageView({ footer = true }: { footer?: boolean }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-auto pt-4"><ResultsPanel /></div>
+            <div className="mt-auto pt-4"><PilotTargets /></div>
           </section>
           <aside className="w-[560px] flex-none"><SavingsPanel /></aside>
         </div>
