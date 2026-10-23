@@ -16,7 +16,8 @@ export function fmt(v: number | string, lang: Lang): string {
 export function fmtClock(min: number, lang: Lang): string {
   const m = ((Math.round(min) % 1440) + 1440) % 1440
   const h = Math.floor(m / 60), mm = m % 60
-  return fmt(`${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`, lang)
+  // isolate so ranges like "08:00–08:50" never get reordered inside RTL text
+  return `⁦${fmt(`${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`, lang)}⁩`
 }
 
 export function useT() {
